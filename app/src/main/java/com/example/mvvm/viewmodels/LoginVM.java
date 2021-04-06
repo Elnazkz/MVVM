@@ -1,26 +1,26 @@
 package com.example.mvvm.viewmodels;
 
+import androidx.databinding.BaseObservable;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.widget.Toast;
 
-import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
+import androidx.databinding.library.baseAdapters.BR;
 
-import com.example.mvvm.BR;
 import com.example.mvvm.model.User;
 
-public class LoginViewModel extends BaseObservable {
+public class LoginVM extends BaseObservable {
     private static final String successMsg = "You've Logged in!";
     private static final String errorMsg = "Email/Pass not valid!";
     private User user;
 
-    public LoginViewModel(){
+    public LoginVM(){
         user = new User("","");
     }
 
     @Bindable
-    private String message;
+    private String message=null;
 
     public void setMessage(String message) {
         this.message = message;
@@ -52,7 +52,8 @@ public class LoginViewModel extends BaseObservable {
     }
 
     public boolean isInputValid(){
-        return !TextUtils.isEmpty(getEmail()) &&
+        return
+                !TextUtils.isEmpty(getEmail()) &&
                 getPass().length()>4 &&
                 Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches();
     }
@@ -64,6 +65,4 @@ public class LoginViewModel extends BaseObservable {
             setMessage(errorMsg);
         }
     }
-
 }
-
