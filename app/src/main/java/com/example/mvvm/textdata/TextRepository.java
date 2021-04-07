@@ -2,6 +2,7 @@ package com.example.mvvm.textdata;
 
 import android.app.Application;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
@@ -25,11 +26,11 @@ public class TextRepository {
         textDao.delete(text);
     }
 
-    public MutableLiveData<List<Text>> getAll() {
+    public LiveData<List<Text>> getAll() {
         return textDao.getAll();
     }
 
-    public MutableLiveData<Text> getTextById(int id) {
+    public LiveData<Text> getTextById(int id) {
         return textDao.getTextById(id);
     }
 }

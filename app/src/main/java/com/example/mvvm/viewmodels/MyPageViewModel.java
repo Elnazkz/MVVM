@@ -2,6 +2,7 @@ package com.example.mvvm.viewmodels;
 
 import android.app.Application;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -17,6 +18,7 @@ public class MyPageViewModel extends ViewModel {
 
     public MyPageViewModel(Application application){
         this.repository = new TextRepository(application);
+        this.myTextLiveData = new MutableLiveData<Text>();
     }
 
     public MutableLiveData<Text> getMyTextLiveData(){
@@ -26,11 +28,11 @@ public class MyPageViewModel extends ViewModel {
         return myTextLiveData;
     }
 
-    public MutableLiveData<List<Text>> getAll() {
+    public LiveData<List<Text>> getAll() {
         return repository.getAll();
     }
 
-    public MutableLiveData<Text> getTextById(int id) {
+    public LiveData<Text> getTextById(int id) {
         return repository.getTextById(id);
     }
 

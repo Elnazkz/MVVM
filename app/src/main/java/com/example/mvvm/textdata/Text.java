@@ -17,7 +17,8 @@ public class Text {
     private String content;
 
     public Text() {
-        textId = 1;
+        this.textId = 1;
+        this.content = "sth";
     }
 
     public int getTextId() {

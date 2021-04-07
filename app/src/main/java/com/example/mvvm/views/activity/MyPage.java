@@ -17,18 +17,21 @@ import com.example.mvvm.viewmodels.MyPageViewModel;
 
 public class MyPage extends AppCompatActivity {
     private int num;
-    private Text text;
+    private Text text = new Text();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
         TextView textView = findViewById(R.id.text_view);
 
-        MyPageViewModel myPageViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(MyPageViewModel.class);
+        MyPageViewModel myPageViewModel = new MyPageViewModel(getApplication());
+                //new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(MyPageViewModel.class);
         myPageViewModel.getTextById(text.getTextId()).observe(this, new Observer<Text>() {
             @Override
             public void onChanged(Text text) {
-                textView.setText(text.getContent());
+                if(text != null) {
+                    textView.setText(text.getContent());
+                }
             }
         });
 

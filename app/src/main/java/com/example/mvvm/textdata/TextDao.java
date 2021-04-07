@@ -20,8 +20,8 @@ public interface TextDao {
     void delete(Text text);
 
     @Query("SELECT * FROM texts")
-    MutableLiveData<List<Text>> getAll();
+    LiveData<List<Text>> getAll();
 
     @Query("SELECT * FROM texts WHERE text_id = :id")
-    MutableLiveData<Text> getTextById(int id);
+    LiveData<Text> getTextById(int id);
 }
