@@ -11,14 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mvvm.R;
 import com.example.mvvm.model.SearchResult;
+import com.example.mvvm.model.jsonmodel.ResultItem;
 
 import java.util.List;
 
 public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.SearchListAdapterViewHolder>{
     private Context context;
-    private List<SearchResult> searchResultList;
+    private List<ResultItem> searchResultList;
 
-    public SearchListAdapter(Context context,List<SearchResult> searchResultList){
+    public SearchListAdapter(Context context,List<ResultItem> searchResultList){
         this.context = context;
         this.searchResultList = searchResultList;
     }
@@ -32,11 +33,11 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Se
 
     @Override
     public void onBindViewHolder(@NonNull SearchListAdapterViewHolder holder, int position) {
-        SearchResult result = searchResultList.get(position);
-        holder.resultTitle.setText(result.getTitle());
+        ResultItem result = searchResultList.get(position);
+        holder.resultTitle.setText(result.getName());
         holder.resultType.setText(result.getType());
-        holder.resultDes.setText(result.getDescription());
-        holder.resultYoutubeUrl.setText(result.getYoutubeUrl());
+        holder.resultDes.setText(result.getwTeaser());
+        holder.resultYoutubeUrl.setText(result.getyUrl());
     }
 
     @Override

@@ -14,6 +14,7 @@ import com.example.mvvm.R;
 import com.example.mvvm.adapter.SearchListAdapter;
 import com.example.mvvm.apiservice.MoviesSearchApiService;
 import com.example.mvvm.model.SearchResult;
+import com.example.mvvm.model.jsonmodel.ResultItem;
 
 import java.util.List;
 
@@ -39,15 +40,26 @@ public class SearchActivity extends AppCompatActivity implements MoviesSearchApi
 
     }
 
+
     @Override
-    public void onReceived(List<SearchResult> searchResultList) {
-        if(searchResultList !=null){
-            SearchListAdapter searchListAdapter = new SearchListAdapter(this, searchResultList);
+    public void onReceived(List<ResultItem> resultItemList) {
+        if(resultItemList != null){
+            SearchListAdapter searchListAdapter = new SearchListAdapter(this, resultItemList);
             recyclerView.setAdapter(searchListAdapter);
         }else{
             Toast.makeText(this,"Info Error", Toast.LENGTH_SHORT).show();
         }
     }
+
+//    @Override
+//    public void onReceived(List<SearchResult> searchResultList) {
+//        if(searchResultList !=null){
+//            SearchListAdapter searchListAdapter = new SearchListAdapter(this, searchResultList);
+//            recyclerView.setAdapter(searchListAdapter);
+//        }else{
+//            Toast.makeText(this,"Info Error", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
 
     public RecyclerView setupRecyclerView(){
@@ -55,4 +67,5 @@ public class SearchActivity extends AppCompatActivity implements MoviesSearchApi
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
         return recyclerView;
     }
+
 }
